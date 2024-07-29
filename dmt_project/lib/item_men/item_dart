@@ -1,0 +1,133 @@
+import 'package:dropdown_model_list/drop_down/model.dart';
+import 'package:dropdown_model_list/drop_down/select_drop_list.dart';
+import 'package:flutter/material.dart';
+
+import 'men_item_model.dart';
+
+class Menitemsscreen extends StatefulWidget {
+  const Menitemsscreen({super.key});
+
+  @override
+  State<Menitemsscreen> createState() => _MenitemsscreenState();
+}
+
+class _MenitemsscreenState extends State<Menitemsscreen> {
+  // DropListModel dropListModel = DropListModel([
+  //   OptionItem(id: "1", title: "Jatin Sharma"),
+  //   OptionItem(id: "2", title: "Puneet Chand"),
+  //   OptionItem(id: "3", title: "Vikas Bhardwaj"),
+  //   OptionItem(id: "4", title: "Rakesh Kumar"),
+  //   OptionItem(id: "5", title: "Nitish Kumar")
+  // ]);
+   OptionItem optionItemSelected = OptionItem(title: "Select Items List");
+
+
+   
+  @override
+  Widget build(BuildContext context) {
+    List< ItemlistData > menList=[];
+   for(var product in menuData){
+        menList.add(ItemlistData.fromJson(product));
+   }
+    return DefaultTabController(
+      length: 1,
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text("Men items"),
+          backgroundColor: Colors.yellow,
+          actions: [
+             PopupMenuButton<String>(
+                elevation: 0,
+                onSelected: (value) {
+                  print('' + value);
+                  if ('salads' == value) {
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => CreateNewGroup()));
+                  }
+                 
+
+                  else if ('Welcome drinkstt' == value) {}
+                 
+                  else if ('rots' == value) {}
+                 
+                  else if ('main curries' == value) {
+                    // Navigator.of(context).push(MaterialPageRoute(
+                    //     builder: (context) => Startedmessage()));
+                  }
+                 
+                
+                 
+                },
+                itemBuilder: (BuildContext Contaxt) {
+                  return [
+                    PopupMenuItem(
+                      child: Text('salads'),
+                      value: 'saladsp',
+                    ),
+                    PopupMenuItem(
+                      child: Text('Welcome drinkst'),
+                      value: 'Welcome drinks',
+                    ),
+                  
+                    PopupMenuItem(
+                      child: Text('rots'),
+                      value: 'rots',
+                    ),
+                    PopupMenuItem(
+                      child: Text('main curries'),
+                      value: 'main curries',
+                      onTap: () {
+                        // print('sss');
+                        // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Settingscreen()));
+                      },
+                    ),
+                  ];
+                }),
+          ],
+        ),
+        
+        //    body: Padding(
+        //   padding: const EdgeInsets.only(top: 20),
+        //   child: Column(
+        //     children: <Widget>[
+        //       SelectDropList(
+        //         itemSelected:optionItemSelected,
+        //         dropListModel:ItemlistData,
+        //         showIcon: true,     // Show Icon in DropDown Title
+        //         showArrowIcon: true,     // Show Arrow Icon in DropDown
+        //         showBorder: true,
+        //         paddingTop: 0,
+        //        // icon: const Icon(Icons.person,color: Colors.black),
+        //         onOptionSelected:(optionItem){
+        //           optionItemSelected = optionItem;
+        //           setState(() {});
+        //         },
+        //       )
+        //     ],
+        //   ),
+        // ),
+     
+      ),
+    );
+  }
+}
+var menuData=[
+  {
+    "type":"salads",
+  "noOfChoice":1,
+  "items":["carrot","kera dosa"],
+  },
+  {"type":"Welcome drinks",
+  "noOfChoice":1,
+  "items":["Water","Smoothies","Grape juice"],
+  },
+  {"type":"rots",
+  "noOfChoice":2,
+  "items":["Paratha","Rots"," Puri"],
+  },
+  {"type":"main curries",
+  "noOfChoice":2,
+  "items":["Paneer","Capsicum curry","Aloo palak"],
+  }
+  ];
